@@ -11,7 +11,7 @@ class Reponse(models.Model):
     isTheResponse = models.BooleanField()
 
     def __str__(self):
-        return self.reponse
+        return self.response
 
 
 
