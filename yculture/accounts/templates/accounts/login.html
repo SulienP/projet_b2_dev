@@ -12,11 +12,16 @@
         <p>
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" aria-label="Mot de passe" role="textbox">
-            <a href="{% url 'logout' %}">Mot de passe oublié ?</a>
         </p>
         <button type="submit" role="button">Connexion</button>
-        <p>Besoin d'un compte ?</p>
-        <a href="{% url 'signup' %}">S'inscrire</a>
+
+        <small>
+            Pas encore inscrit ?
+            <a href="{% url 'signup' %}">S'inscrire</a>
+        <br>
+            Mot de passe oublié ?
+            <a href="{% url 'password_reset' %}">Réinitialiser mon mot de passe</a>
+        </small>
     </form>
 
 {% endblock %}
