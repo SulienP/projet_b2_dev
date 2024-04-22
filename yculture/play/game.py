@@ -2,7 +2,7 @@ from play.models import Question, Reponse
 import random
 
 class StartGame():
-    def __init__(self, player):
+    def __init__(self, player ):
         self.get_question_and_response()
     
     def get_question_and_response(self):
