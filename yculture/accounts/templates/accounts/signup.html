@@ -14,6 +14,8 @@
             <input type="password" name="password" id="password" aria-label="Mot de passe" role="textbox">
         </p>
         <button type="submit" role="button">S'inscrire</button>
+        <p>Tu as déjà un compte ?</p>
+        <a href="{% url 'login' %}">Connexion</a>
     </form>
 
 {% endblock %}

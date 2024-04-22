@@ -6,10 +6,11 @@
         <title>YCulture</title>
     </head>
     <body>
+        <h1><a href="{% url 'index' %}">YCulture</a></h1>
         {% if user.is_authenticated %}
             {{ user.username }}
             <a href="{% url 'logout' %}">Déconnexion</a>
-        {% else %}
+        {% elif request.path != '/login/' and request.path != '/signup/' %}
             <a href="{% url 'login' %}">Connexion</a>
             <a href="{% url 'signup' %}">S'inscrire</a>
         {% endif %}
