@@ -7,6 +7,10 @@
     </head>
     <body>
         {% if user.is_authenticated %}
+            {{ user.username }}
+            <a href="{% url 'logout' %}">Déconnexion</a>
+        {% else %}
+            <a href="{% url 'login' %}">Connexion</a>
             <a href="{% url 'signup' %}">S'inscrire</a>
         {% endif %}
 
