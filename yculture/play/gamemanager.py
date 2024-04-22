@@ -1,13 +1,12 @@
 import play.game as GA
+from play.models import MatchMeking
 
 def gamemanager():
-    value =""
-    players = ["player1", "plaer20"]
-    if len(players) <= 5 :
+    players = MatchMeking.objects.all()[:5]
+     
+    if len(players) == 5:
         GA.StartGame(players)
-        return "allquestion"        
+        players.delete()
+        return "allquestion"  
     else:
-        value =" oneplayer en trop"
-        return value
-    
-
+        return "Waiting for more players"
