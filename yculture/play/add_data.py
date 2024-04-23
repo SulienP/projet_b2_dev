@@ -28,12 +28,12 @@
 #     "Combien de côtés a un pentagone ?",
 # ]
 
-# # Ajoutez chaque question à la base de données
-# for question_text in nouvelles_questions:
-#     nouvelle_question = Question(question=question_text)
-#     nouvelle_question.save()
+#     # Ajoutez chaque question à la base de données
+#     for question_text in nouvelles_questions:
+#         nouvelle_question = Question(question=question_text)
+#         nouvelle_question.save()
 
-# print("Les questions ont été ajoutées avec succès.")
+#     print("Les questions ont été ajoutées avec succès.")
 
 # # Liste des réponses à ajouter pour toutes les questions
 #     toutes_les_reponses = [
@@ -145,4 +145,3 @@
 #         nouvelle_reponse = Reponse(id_question=question, response=reponse_text, isTheResponse=is_true)
 #         nouvelle_reponse.save()
 
-# print("Toutes les réponses ont été ajoutées avec succès.")
