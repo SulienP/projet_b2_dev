@@ -4,6 +4,8 @@ from django.urls import include, path
 from home.views import index
 from accounts.views import signup, logout_user, login_user
 from play.views import play
+from django.conf.urls.static import static
+
 
 from yculture import settings
 
@@ -18,4 +20,4 @@ urlpatterns = [
 	path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
 	path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

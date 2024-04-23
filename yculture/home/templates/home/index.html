@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 
+{% load static %}
 <title>{% block title %}Accueil - YCulture{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/global.css' %}">
 
 {% block content %}
-    <a href="{% url 'play' %}">PLAY</a>
+    <div class="play">
+        <h1>IMAGINEZ UN JEU...</h1>
+        <p>YCulture est un jeu en ligne où les participants s'affrontent en répondant à des questions de culture générale dans diverses catégories.</p>
+        <a href="{% url 'play' %}">PLAY</a>
+    </div>
 {% endblock %}
