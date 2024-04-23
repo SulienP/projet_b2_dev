@@ -14,9 +14,8 @@ class Reponse(models.Model):
         return self.response
 
 # ! décommenter et ajouter taff evan
-
-# class MatchMeking(models.Model):
-#     id_user  = models.ForeignKey(User)
-#     userRank = models.IntegerField(default= 1)
-
-
+'''
+class MatchMeking(models.Model):
+    id_user  = models.ForeignKey(User)
+    userRank = models.IntegerField(default= 1)
+'''
