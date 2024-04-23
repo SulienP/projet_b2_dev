@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
-<title>{% block title %}Accueil - YCulture{% endblock %}</title>
+{% block title %}Accueil - YCulture{% endblock %}
 
 {% block content %}
-    <a href="{% url 'play' %}">PLAY</a>
+
+    <form action="{% url 'play' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">play</button>
+    </form>
 {% endblock %}
