@@ -1,11 +1,10 @@
 from play import game as GA
 from play.models import MatchMeking
+from django.shortcuts import redirect
 
 
 def gamemanager(request):
-    
     players = MatchMeking.objects.all()[:5]
-
     current_user = request.user
     user_id = request.session.get('user_id')
     existing_match = MatchMeking.objects.filter(id_user=user_id).first()
@@ -15,9 +14,8 @@ def gamemanager(request):
     else:
         if len(players) == 5:
             GA.StartGame(players)
-            print("Le jeu a commencé!")
             for player in players:
                 player.delete()
-            return "allquestion"  
+            return "play"
         else:
-            return "Waiting for more players"  
+            return "noPlay"
