@@ -7,6 +7,8 @@ class Question(models.Model):
     def __str__(self):
         return self.question
 
+
+
 class Reponse(models.Model):
     id_question = models.ForeignKey(Question, on_delete=models.CASCADE)
     response = models.CharField(max_length=255)

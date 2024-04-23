@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Play - YCulture{% endblock %}</title>
+
+{% block content %}
+    <div>
+        <div id="timer">Temps restant : <span id="countdown"></span></div>
+        <div id="chat">
+            <h2>Chat :</h2>
+            <div id="messages">
+                <!-- Les messages du chat seront affichés ici -->
+            </div>
+            <input type="text" id="messageInput" placeholder="Tapez votre message ici...">
+            <button onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <div id="questions">
+        <h2>Questions : {{ value }}</h2>
+        <ul>
+            <li>Réponse 1</li>
+            <li>Réponse 2</li>
+            <li>Réponse 3</li>
+            <li>Réponse 4</li>
+        </ul>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            var message = messageInput.value;
+            if (message.trim() !== "") {
+                // Envoyer le message (vous pouvez implémenter cette fonction en utilisant AJAX, WebSockets, etc.)
+                console.log("Message envoyé :", message);
+                // Effacer le champ de saisie après l'envoi
+                messageInput.value = "";
+            }
+        }
+
+        // Fonction pour mettre à jour le timer
+        function updateTimer() {
+            var countdownElement = document.getElementById("countdown");
+            var seconds = 300; // 5 minutes
+            function countdown() {
+                seconds--;
+                var minutes = Math.floor(seconds / 60);
+                var remainingSeconds = seconds % 60;
+                countdownElement.textContent = minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    countdownElement.textContent = "Temps écoulé";
+                    // Ajoutez ici une logique pour traiter le temps écoulé
+                }
+            }
+            countdown(); // Appel initial pour éviter un délai d'une seconde
+            var timer = setInterval(countdown, 1000);
+        }
+
+        // Appel de la fonction pour commencer le timer
+        updateTimer();
+    </script>
+{% endblock %}
