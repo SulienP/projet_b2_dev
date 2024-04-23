@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
-{% block content %}
+<title>{% block title %}YCulture - Connexion{% endblock %}</title>
 
+{% block content %}
     <h1>Connexion</h1>
     <form method="POST" role="form">
         {% csrf_token %}
@@ -14,7 +15,6 @@
             <input type="password" name="password" id="password" aria-label="Mot de passe" role="textbox">
         </p>
         <button type="submit" role="button">Connexion</button>
-
         <small>
             Pas encore inscrit ?
             <a href="{% url 'signup' %}">S'inscrire</a>
@@ -23,5 +23,4 @@
             <a href="{% url 'password_reset' %}">Réinitialiser mon mot de passe</a>
         </small>
     </form>
-
 {% endblock %}

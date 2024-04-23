@@ -1,13 +1,16 @@
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.shortcuts import render, redirect
+from django import template
 
 User = get_user_model()
 
 def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
+        email = request.POST.get("email")
         password = request.POST.get("password")
         user = User.objects.create_user(username=username,
+                                        email=email,
                                         password=password)
         login(request, user)
         return redirect('index')
@@ -29,6 +32,3 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('index')
-
-def forgot_password(request):
-    pass

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
-{% block content %}
+<title>{% block title %}YCulture - S'inscrire{% endblock %}</title>
 
+{% block content %}
     <h1>S'inscrire</h1>
     <form method="POST" role="form">
         {% csrf_token %}
@@ -10,12 +11,17 @@
             <input type="text" name="username" id="username" aria-label="Pseudo" role="textbox">
         </p>
         <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" aria-label="Adresse email" role="textbox">
+        </p>
+        <p>
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" aria-label="Mot de passe" role="textbox">
         </p>
-        <button type="submit" role="button">S'inscrire</button>
-        <p>Tu as déjà un compte ?</p>
-        <a href="{% url 'login' %}">Connexion</a>
+        <button type="submit" role="button" aria-label="S'inscrire">S'inscrire</button>
+        <small>
+            <p>Tu as déjà un compte ?</p>
+            <a href="{% url 'login' %}" aria-label="Connexion" role="link">Connexion</a>
+        </small>
     </form>
-
 {% endblock %}
