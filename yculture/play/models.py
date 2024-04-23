@@ -1,4 +1,6 @@
 from django.db import models
+from accounts.models import Player
+
 class Question(models.Model):
     question = models.CharField(max_length=255)
 
@@ -14,8 +16,8 @@ class Reponse(models.Model):
         return self.response
 
 # ! décommenter et ajouter taff evan
-'''
+
 class MatchMeking(models.Model):
-    id_user  = models.ForeignKey(User)
+    id_user = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
     userRank = models.IntegerField(default= 1)
-'''
+    isInGame = models.BooleanField(default=False)

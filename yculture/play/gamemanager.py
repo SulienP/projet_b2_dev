@@ -1,10 +1,11 @@
 import play.game as GA
 
-#from play.models import MatchMeking
-def gamemanager():
-    return "hello"
+from play.models import MatchMeking
 
-'''
+def gamemanager():
+    
+    
+    
     players = MatchMeking.objects.all()[:5]
      
     if len(players) == 5:
@@ -13,4 +14,3 @@ def gamemanager():
         return "allquestion"  
     else:
         return "Waiting for more players"
-'''
