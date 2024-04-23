@@ -20,6 +20,6 @@ class Reponse(models.Model):
 # ! décommenter et ajouter taff evan
 
 class MatchMeking(models.Model):
-    id_user = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True)
+    id_user = models.IntegerField(null=True)
     userRank = models.IntegerField(default= 1)
     isInGame = models.BooleanField(default=False)
