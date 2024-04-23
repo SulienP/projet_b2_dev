@@ -3,18 +3,14 @@ from play.models import MatchMeking
 
 
 def gamemanager(request):
-    print("On passe ici")
     current_user = request.user
-    print(current_user , "current user")
     username = current_user.username
-    
-    user_id = current_user.id
+    user_id = request.session.get('user_id')
+
     
     # new_match = MatchMeking.objects.create(id_user=current_user, userRank=1, isInGame=False)
     
-    print(username, "icccccccccccccccccc", user_id)
     
-    # Enregistrer le nouvel objet MatchMeking
     # new_match.save()
 
     

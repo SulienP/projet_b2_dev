@@ -17,6 +17,7 @@ def signup(request):
 
     return render(request, 'accounts/signup.html')
 
+
 def login_user(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -25,10 +26,10 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
+            request.session['user_id'] = user.id
         
-        return redirect('index')
+        return redirect('index')  
     return render(request, 'accounts/login.html')
-
 def logout_user(request):
     logout(request)
     return redirect('index')
