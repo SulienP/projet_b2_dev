@@ -1,6 +1,6 @@
-from django.http import HttpResponse
 from play.gamemanager import gamemanager
+from django.shortcuts import render
 
 def play(request):
     value = gamemanager()
-    return HttpResponse(value)
+    return render(request, 'play/play.html', {'value': value})

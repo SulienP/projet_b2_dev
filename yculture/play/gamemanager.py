@@ -2,7 +2,7 @@ import play.game as GA
 
 #from play.models import MatchMeking
 def gamemanager():
-    return "hello"
+    return "Hello ?"
 
 '''
     players = MatchMeking.objects.all()[:5]
