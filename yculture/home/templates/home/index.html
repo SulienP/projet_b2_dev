@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 
-{% load static %}
 <title>{% block title %}Accueil - YCulture{% endblock %}</title>
-<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}">
+
+    <div class="navbar">
+        <h1><a href="{% url 'index' %}" aria-label="Accueil" role="link">YCulture</a></h1>
+        <ul>
+            {% if user.is_authenticated %}
+                <li>{{ user.username }}</li>
+                <li><a href="{% url 'logout' %}" aria-label="Déconnexion" role="link">Déconnexion</a></li>
+                
+            {% elif request.path == '/' %}
+                <li><a href="{% url 'login' %}" aria-label="Connexion" role="link">Connexion</a></li>
+                <li><a href="{% url 'signup' %}" aria-label="Inscription" role="link">S'inscrire</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
     <div class="play">
         <h1>IMAGINEZ UN JEU...</h1>
-        <p>YCulture est un jeu en ligne où les participants s'affrontent en répondant à des questions de culture générale dans diverses catégories.</p>
+        <p>...où cinq participants, lors de 4 manches successives, doivent répondre à des questions de culture générale dans diverses catégories. Le concurrent le moins performant est éliminé à la fin de chaque manche et le gagnant est le candidat remportant la dernière manche.</p>
         <a href="{% url 'play' %}">PLAY</a>
     </div>
 {% endblock %}

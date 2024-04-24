@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
-{% load static %}
 <title>{% block title %}Connexion - YCulture{% endblock %}</title>
-<link rel="stylesheet" href="{% static 'accounts/css/connexion.css' %}">
-<link rel="stylesheet" href="{% static 'css/global.css' %}">
 
 {% block content %}
-    <div class="connexion">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+
+    <a href="{% url 'index' %}" aria-label="Retour" role="link">Retour</a>
+
+    <div class="base">
         <h1>Connexion</h1>
         <form method="POST" role="form">
             {% csrf_token %}

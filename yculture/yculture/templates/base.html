@@ -1,25 +1,13 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/global.css' %}">
         <title>{% block title %}YCulture{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}">
     </head>
     <body>
-        <div class="navbar">
-            <h1><a href="{% url 'index' %}" aria-label="Accueil" role="link">YCulture</a></h1>
-            <ul>
-                {% if user.is_authenticated %}
-                    <li>{{ user.username }}</li>
-                    <li><a href="{% url 'logout' %}" aria-label="Déconnexion" role="link">Déconnexion</a></li>
-                {% elif request.path == '/' %}
-                    <li><a href="{% url 'login' %}" aria-label="Connexion" role="link">Connexion</a></li>
-                    <li><a href="{% url 'signup' %}" aria-label="Inscription" role="link">S'inscrire</a></li>
-                {% endif %}
-            </ul>
-        </div>
         {% block content %}
         {% endblock %}
     </body>
