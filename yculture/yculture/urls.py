@@ -9,10 +9,11 @@ from django.urls import path, include
 from api import urls as api_urls
 
 from yculture import settings
+from api.views import UserLoginAPIView
 
 urlpatterns = [
 
-    
+    path('api/auth/login/', UserLoginAPIView.as_view(), name="api_login"),
     path('api/', include(api_urls)),
     path('admin/', admin.site.urls),
     path('', index, name="index"),
