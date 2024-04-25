@@ -11,7 +11,7 @@ def gamemanager(request):
         new_match = MatchMeking.objects.create(id_user=user_id, userRank=1, isInGame=False)
         new_match.save()
     else:
-        players = MatchMeking.objects.all()[:5]
+        players = MatchMeking.objects.all()[:2]
 
         if len(players) == 2:
             GA.StartGame(players)

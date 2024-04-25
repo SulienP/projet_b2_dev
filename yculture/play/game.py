@@ -19,5 +19,5 @@ class StartGame():
         return random_questions, response_choice
 
     # def game(self,player,request):
-        self.question , self.reponse = self.get_question_and_response()
-        player_id = request.user.id
+        # self.question , self.reponse = self.get_question_and_response()
+        # player_id = request.user.id
