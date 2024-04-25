@@ -22,7 +22,6 @@
     <div class="play">
         <h1>IMAGINEZ UN JEU . . .</h1>
         <p>...où cinq participants, lors de 4 manches successives, doivent répondre à des questions de culture générale dans diverses catégories. Le concurrent le moins performant est éliminé à la fin de chaque manche et le gagnant est le candidat remportant la dernière manche.</p>
-        <a href="{% url 'play' %}">JOUER</a>
         <form action="{% url 'play' %}" method="post">
             {% csrf_token %}
             <button type="submit">play</button>
