@@ -43,6 +43,10 @@ ul {
     padding: 0;
 }
 
+li {
+    font-family: 'Heavitas', sans-serif;
+}
+
 p {
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
@@ -74,4 +78,13 @@ button:hover {
 
 button:active {
     background-color: var(--active-action-color);
+}
+
+input::placeholder{
+    color: #a5acbb;
+    padding-left: -15px;
+}
+
+*:focus {
+    outline: 2px solid var(--action-color);
 }

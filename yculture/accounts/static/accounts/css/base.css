@@ -45,15 +45,6 @@
     margin-bottom: 15px;
 }
 
-.base form input::placeholder{
-    color: #a5acbb;
-    padding-left: -15px;
-}
-
-.base form input:focus {
-    outline: 2px solid var(--action-color);
-}
-
 .base form button {
     display: flex;
     flex-direction: column;
