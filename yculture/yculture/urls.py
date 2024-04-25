@@ -12,8 +12,7 @@ from yculture import settings
 
 urlpatterns = [
 
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
+    
     path('api/', include(api_urls)),
     path('admin/', admin.site.urls),
     path('', index, name="index"),
