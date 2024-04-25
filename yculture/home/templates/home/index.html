@@ -10,8 +10,14 @@
         <a href="{% url 'index' %}" style="font-family: 'Narnia', sans-serif; font-size: 1.75em;" aria-label="Accueil" role="link">YCulture</a>
         <ul>
             {% if user.is_authenticated %}
-                <li>{{ user.username }}</li>
-                <li><a href="{% url 'logout' %}" aria-label="Déconnexion" role="link">Déconnexion</a></li>
+                <li>
+                    <a href="{% url 'settings' %}" aria-label="Compte utilisateur" role="link">
+                        {{ user.username }}
+                        {% if user.profil_photo %}
+                            <img src="{{ user.profil_photo.url }}" alt="Photo de profil">
+                        {% endif %}
+                    </a>
+                </li>
                 
             {% elif request.path == '/' %}
                 <li><a href="{% url 'login' %}" class="connexion" aria-label="Connexion" role="link">Connexion</a></li>

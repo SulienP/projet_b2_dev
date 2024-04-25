@@ -2,16 +2,16 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from home.views import index
-from accounts.views import signup, logout_user, login_user
+from accounts.views import signup, logout_user, login_user, settings_user
 from play.views import play
 from django.conf.urls.static import static
-
 
 from yculture import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
+    path('settings/', settings_user, name="settings"),
     path('play/', play, name="play"),
     path('signup/', signup, name="signup"),
     path('login/', login_user, name="login"),

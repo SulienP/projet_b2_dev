@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.shortcuts import render, redirect
 from django import template
+from .edit_accounts import EditProfilPhoto
 
 from play.models import MatchMeking
 
@@ -32,6 +33,8 @@ def login_user(request):
         
         return redirect('index')  
     return render(request, 'accounts/login.html')
+
+
 def logout_user(request):
     user_id = request.session.get('user_id')
     
@@ -41,3 +44,18 @@ def logout_user(request):
     logout(request)
 
     return redirect('index')
+
+
+def settings_user(request):
+
+    if request.method == 'POST':
+        form = EditProfilPhoto(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = EditProfilPhoto(instance=request.user)
+
+    context = { 'form': form }
+
+    return render(request, 'accounts/settings.html', context)
