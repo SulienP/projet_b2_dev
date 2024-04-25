@@ -1,0 +1,32 @@
+# Fichiers générés par l'environnement virtuel
+venv/
+
+# Fichiers de configuration
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+
+# Fichier de configuration pour IDEs spécifiques
+.idea/
+.vscode/
+
+# Fichiers de sauvegarde
+*.bak
+*.swp
+*~
+
+# Fichiers de logs
+*.log
+
+# Fichiers de cache
+*.sqlite3
+
+# Fichiers de médias statiques générés
+/staticfiles/
+
+# Fichier de configuration local (sécurité)
+local_settings.py
+
+# Dossier contenant les fichiers statiques collectés
+/static/
