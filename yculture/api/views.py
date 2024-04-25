@@ -5,10 +5,11 @@ from rest_framework import permissions
 from .models import Api
 from .serializers import ApiSerializer
 
+
 class ApiListApiView(APIView):
     # add permission to check if user is authenticated
     permission_classes = [permissions.IsAuthenticated]
-
+     
     # 1. List all
     def get(self, request, *args, **kwargs):
         '''
@@ -35,17 +36,12 @@ class ApiListApiView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .models import Api
-from .serializers import ApiSerializer
-from rest_framework import permissions
+
 
 class ApiDetailApiView(APIView):
     # add permission to check if user is authenticated
     permission_classes = [permissions.IsAuthenticated]
-
+    
     def get_object(self, api_id, user_id):
         '''
         Helper method to get the object with given api_id and user_id

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'play',
     'rest_framework',
     'api',
-    'djoser'
 ]
 
 MIDDLEWARE = [
@@ -142,15 +141,3 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # drf-spectacular settings
-}
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
-}
