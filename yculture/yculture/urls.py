@@ -5,11 +5,15 @@ from home.views import index
 from accounts.views import signup, logout_user, login_user
 from play.views import play
 from django.conf.urls.static import static
-
+from django.urls import path, include
+from api import urls as api_urls
 
 from yculture import settings
 
 urlpatterns = [
+
+    
+    path('api/', include(api_urls)),
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('play/', play, name="play"),
