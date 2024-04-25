@@ -7,22 +7,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/index.css' %}">
 
     <div class="navbar">
-        <h1><a href="{% url 'index' %}" aria-label="Accueil" role="link">YCulture</a></h1>
+        <a href="{% url 'index' %}" style="font-family: 'Narnia', sans-serif; font-size: 1.75em;" aria-label="Accueil" role="link">YCulture</a>
         <ul>
             {% if user.is_authenticated %}
                 <li>{{ user.username }}</li>
                 <li><a href="{% url 'logout' %}" aria-label="Déconnexion" role="link">Déconnexion</a></li>
                 
             {% elif request.path == '/' %}
-                <li><a href="{% url 'login' %}" aria-label="Connexion" role="link">Connexion</a></li>
-                <li><a href="{% url 'signup' %}" aria-label="Inscription" role="link">S'inscrire</a></li>
+                <li><a href="{% url 'login' %}" class="connexion" aria-label="Connexion" role="link">Connexion</a></li>
             {% endif %}
         </ul>
     </div>
 
     <div class="play">
-        <h1>IMAGINEZ UN JEU...</h1>
+        <h1>IMAGINEZ UN JEU . . .</h1>
         <p>...où cinq participants, lors de 4 manches successives, doivent répondre à des questions de culture générale dans diverses catégories. Le concurrent le moins performant est éliminé à la fin de chaque manche et le gagnant est le candidat remportant la dernière manche.</p>
-        <a href="{% url 'play' %}">PLAY</a>
+        <a href="{% url 'play' %}">JOUER</a>
     </div>
 {% endblock %}
