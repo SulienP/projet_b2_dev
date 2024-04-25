@@ -1,10 +1,12 @@
 from play.models import Question, Reponse
 import random
 
+
 class StartGame():
-    def __init__(self, player ):
+    def __init__(self ,player_list):
         self.get_question_and_response()
-    
+        print(len(player_list))
+            
     def get_question_and_response(self):
         random_questions = []
         response_choice = []
@@ -15,3 +17,7 @@ class StartGame():
             responses_by_question = Reponse.objects.filter(id_question_id=value)
             response_choice.append(responses_by_question)
         return random_questions, response_choice
+
+    # def game(self,player,request):
+        # self.question , self.reponse = self.get_question_and_response()
+        # player_id = request.user.id
