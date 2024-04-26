@@ -27,4 +27,12 @@
             <button type="submit">play</button>
         </form>
     </div>
+    <div class="leaderboard">
+    <h2>leaderboard</h2>
+    <ul>
+        {% for player in players %}
+            <li>{{ player.username }} - Points : {{ player.point }}        ,</li>
+        {% endfor %}
+    </ul>
+    </div>
 {% endblock %}

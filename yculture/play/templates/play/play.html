@@ -1,62 +1,113 @@
 {% extends 'base.html' %}
 
-<title>{% block title %}Play - YCulture{% endblock %}</title>
+{% block title %}Play - YCulture{% endblock %}
 
 {% block content %}
-    <div>
-        <div id="timer">Temps restant : <span id="countdown"></span></div>
-        <div id="chat">
-            <h2>Chat :</h2>
-            <div id="messages">
-                <!-- Les messages du chat seront affichés ici -->
-            </div>
-            <input type="text" id="messageInput" placeholder="Tapez votre message ici...">
-            <button onclick="sendMessage()">Envoyer</button>
+<div>
+    <div id="timer">Temps restant : <span id="countdown"></span></div>
+    <div id="chat">
+        <h2>Chat :</h2>
+        <div id="messages">
+            <!-- Les messages du chat seront affichés ici -->
         </div>
+        <input type="text" id="messageInput" placeholder="Tapez votre message ici...">
+        <button onclick="sendMessage()">Envoyer</button>
     </div>
+</div>
 
-    <div id="questions">
-        <h2>Questions : {{ value }}</h2>
-        <ul>
-            <li>Réponse 1</li>
-            <li>Réponse 2</li>
-            <li>Réponse 3</li>
-            <li>Réponse 4</li>
-        </ul>
+<div id="questions">
+    <div class="question">
+        <h2>Question :</h2>
+        <p>{{ question.0 }}</p>
+        <form id="response-form" method="post" action="{% url 'play' %}">
+            {% csrf_token %}
+            <div id="response">
+                <ul>
+                    <li>
+                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.0.id }}">{{ response.0.0 }}</button>
+                    </li>
+                    <li>
+                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.1.id }}">{{ response.0.1 }}</button>
+                    </li>
+                    <li>
+                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.2.id }}">{{ response.0.2 }}</button>
+                    </li>
+                    <li>
+                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.3.id }}">{{ response.0.3 }}</button>
+                    </li>
+                </ul>
+            </div>
+        </form>
     </div>
+</div>
 
-    <script>
-        function sendMessage() {
-            var messageInput = document.getElementById("messageInput");
-            var message = messageInput.value;
-            if (message.trim() !== "") {
-                // Envoyer le message (vous pouvez implémenter cette fonction en utilisant AJAX, WebSockets, etc.)
-                console.log("Message envoyé :", message);
-                // Effacer le champ de saisie après l'envoi
-                messageInput.value = "";
+<script>
+    function sendMessage() {
+        var messageInput = document.getElementById("messageInput");
+        var message = messageInput.value;
+        if (message.trim() !== "") {
+            // Envoyer le message (vous pouvez implémenter cette fonction en utilisant AJAX, WebSockets, etc.)
+            console.log("Message envoyé :", message);
+            // Effacer le champ de saisie après l'envoi
+            messageInput.value = "";
+        }
+    }
+
+    // Fonction pour mettre à jour le timer
+    function updateTimer() {
+        var countdownElement = document.getElementById("countdown");
+        var seconds = 300; // 5 minutes
+        function countdown() {
+            seconds--;
+            var minutes = Math.floor(seconds / 60);
+            var remainingSeconds = seconds % 60;
+            countdownElement.textContent = minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
+            if (seconds <= 0) {
+                clearInterval(timer);
+                countdownElement.textContent = "Temps écoulé";
+                // Ajoutez ici une logique pour traiter le temps écoulé
             }
         }
+        countdown(); // Appel initial pour éviter un délai d'une seconde
+        var timer = setInterval(countdown, 1000);
+    }
 
-        // Fonction pour mettre à jour le timer
-        function updateTimer() {
-            var countdownElement = document.getElementById("countdown");
-            var seconds = 300; // 5 minutes
-            function countdown() {
-                seconds--;
-                var minutes = Math.floor(seconds / 60);
-                var remainingSeconds = seconds % 60;
-                countdownElement.textContent = minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
-                if (seconds <= 0) {
-                    clearInterval(timer);
-                    countdownElement.textContent = "Temps écoulé";
-                    // Ajoutez ici une logique pour traiter le temps écoulé
-                }
-            }
-            countdown(); // Appel initial pour éviter un délai d'une seconde
-            var timer = setInterval(countdown, 1000);
-        }
+    updateTimer();
 
-        // Appel de la fonction pour commencer le timer
-        updateTimer();
-    </script>
+    function handleResponseButtonClick() {
+        var buttons = document.querySelectorAll('.response-button');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                var selectedAnswer = button.value;
+                console.log('Selected answer:', selectedAnswer);
+
+                var formData = new FormData();
+                formData.append('selected_answer', selectedAnswer);
+                
+                fetch('/play/', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Réponse enregistrée avec succès');
+                        // Actualiser la page après avoir envoyé la réponse
+                        location.reload();
+                    } else {
+                        console.error('Erreur lors de l\'enregistrement de la réponse');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors de l\'envoi des données:', error);
+                });
+            });
+        });
+    }
+
+    handleResponseButtonClick();
+</script>
 {% endblock %}

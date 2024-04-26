@@ -6,20 +6,19 @@ from accounts.views import signup, logout_user, login_user
 from play.views import play
 from django.conf.urls.static import static
 from django.urls import path, include
-from api import urls as api_urls
 
 from yculture import settings
-from api.views import UserLoginAPIView
+from accounts import views
 
 urlpatterns = [
 
-    path('api/auth/login/', UserLoginAPIView.as_view(), name="api_login"),
-    path('api/', include(api_urls)),
     path('admin/', admin.site.urls),
+    path('getData/', views.getData, name="getData"),
+    # path('post/',views.postData,name="post"),
     path('', index, name="index"),
     path('play/', play, name="play"),
     path('signup/', signup, name="signup"),
-    path('login/', login_user, name="login"),
+    path('login/', views.login_user, name="login"),
     path('logout/' , logout_user, name="logout"),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'), name = 'password_reset'),
 	path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
