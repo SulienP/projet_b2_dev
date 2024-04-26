@@ -1,0 +1,22 @@
+
+
+form {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}

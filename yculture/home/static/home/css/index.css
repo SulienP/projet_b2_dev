@@ -1,8 +1,13 @@
-h1 {
-    font-family: 'Narnia', sans-serif;
+body {
     margin: 0;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-family: 'Heavitas', sans-serif;
     margin-top: 10vh;
     padding: 0;
+    margin: 0;
 }
 
 .navbar {
@@ -12,6 +17,7 @@ h1 {
     margin: 0;
     padding: 0;
     position: absolute;
+    max-width: 100%;
     width: 100vw;
     height: 10vh;
 }
@@ -34,6 +40,7 @@ h1 {
     height: 50px;
     object-fit: cover;
     border-radius: 100%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 .navbar:first-child {
@@ -65,12 +72,17 @@ h1 {
 
 
 .play {
+    max-width: 100%;
     height: 70vh;
     background-color: #4c4f56;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.play h1 {
+    margin-top: 75px;
 }
 
 .play p {
@@ -90,7 +102,7 @@ h1 {
 
 .play form button {
     width: 250px;
-    height: 50px;
+    height: 75px;
     background-color: var(--action-color);
     border: 0;
     border-radius: 10px;
@@ -98,6 +110,7 @@ h1 {
     font-size: 1em;
     font-weight: 700;
     color: white;
+    margin-top: 25px;
 }
 
 .play form button:hover {
@@ -108,4 +121,28 @@ h1 {
 .play form button:active {
     background-color: var(--active-action-color);
     color: white;
+}
+
+.add-questions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0px;
+}
+
+.add-questions a {
+    margin-top: 10px;
+    border: 2px solid var(--action-color);
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 1.25em;
+}
+
+.add-questions a:hover {
+    border: 2px solid var(--hover-action-color);
+}
+
+.add-questions a:active {
+    border: 2px solid var(--active-action-color);
 }

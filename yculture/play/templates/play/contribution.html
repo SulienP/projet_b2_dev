@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Contribution - YCulture{% endblock %}</title>
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'play/css/contribution.css' %}">
+
+    <form method="POST" role="form">
+        {% csrf_token %}
+        <ul>
+            <li>
+                <label for="question">Votre question</label>
+                <input type="text" id="question" placeholder="Votre question" aria-label="Votre question" role="textbox">
+            </li>
+            <li>
+                <label for="answer">Réponse 1</label>
+                <input type="text" id="answer" placeholder="Réponse 1" aria-label="Réponse 1" role="textbox">
+            </li>
+            <li>
+                <label for="answer">Réponse 2</label>
+                <input type="text" id="answer" placeholder="Réponse 2" aria-label="Réponse 2" role="textbox">
+            </li>
+            <li>
+                <label for="answer">Réponse 3</label>
+                <input type="text" id="answer" placeholder="Réponse 3" aria-label="Réponse 3" role="textbox">
+            </li>
+            <li>
+                <label for="answer">Réponse 4</label>
+                <input type="text" id="answer" placeholder="Réponse 4" aria-label="Réponse 4" role="textbox">
+            </li>
+        </ul>
+        <button type="submit" role="button">Soumettre</button>
+    </form>
+{% endblock %}
