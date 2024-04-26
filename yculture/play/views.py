@@ -7,15 +7,18 @@ from accounts.models import Player
 from play.add_data import data
 
 
-def play_game(request):
+def play(request):
     current_user = request.user
-    
+    if request.method == 'POST':
+        selected_answer = request.POST.get('selected_answer')
+        print("Selected answer:", selected_answer)
+
+
     if current_user.isInGame:
             return redirect('index')
         
     question, response = gamemanager(request)
     return render(request, 'play/play.html', {'question': question, "response": response})
-
 def gamemanager(request):
     current_user = request.user
     

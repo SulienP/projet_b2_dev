@@ -8,7 +8,6 @@ def index(request):
         current_user = User.objects.get(pk=request.user.pk)
         current_user.isInGame = False
         current_user.save()
-        print("hola")
     return render(request, 'home/index.html')
 
 

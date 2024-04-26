@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 from home.views import index
 from accounts.views import signup, logout_user, login_user
-from play.views import play_game
+from play.views import play
 from django.conf.urls.static import static
 
 
@@ -13,9 +13,9 @@ from accounts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('getData/', views.getData, name="getData"),
-    path('post/',views.postData,name="post"),
+    # path('post/',views.postData,name="post"),
     path('', index, name="index"),
-    path('play/', play_game, name="play"),
+    path('play/', play, name="play"),
     path('signup/', signup, name="signup"),
     path('login/', views.login_user, name="login"),
     path('logout/' , logout_user, name="logout"),
