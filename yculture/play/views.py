@@ -11,8 +11,7 @@ def play(request):
     current_user = request.user
     if request.method == 'POST':
         selected_answer = request.POST.get('selected_answer')
-        print("Selected answer:", selected_answer)
-
+        StartGame.game(current_user, selected_answer)
 
     if current_user.isInGame:
             return redirect('index')
@@ -21,9 +20,8 @@ def play(request):
     return render(request, 'play/play.html', {'question': question, "response": response})
 def gamemanager(request):
     current_user = request.user
-    
+    data()
     if not current_user.isInGame:
-        print("je passe ici")
         user_id = current_user.id
         player = Player.objects.get(id=user_id)
         player.isInGame = True
@@ -75,7 +73,14 @@ class StartGame():
             response_choice.append(responses_by_question)
         return random_questions, response_choice
     
-    def game(self,player,request):
-        self.question , self.reponse = self.get_question_and_response()
-        player_id = request.user.id
-        
+    def game(current_player, answer):
+        if answer != None:
+            get_response_information = Reponse.objects.get(id=answer)
+            print(get_response_information)
+            if get_response_information.isTheResponse:
+                current_player.point += 5
+            else:
+                current_player.point -= 5
+            if current_player.point <= 0 :
+                current_player.point =0  
+            current_player.save()

@@ -84,10 +84,11 @@
             console.log('Selected answer:', selectedAnswer);
 
             var formData = new FormData();
-            var values = formData.append('selected_answer', selectedAnswer);
+            formData.append('selected_answer', selectedAnswer);
+            
             fetch('/play/', {
                 method: 'POST',
-                body: values,
+                body: formData,
                 headers: {
                     'X-CSRFToken': '{{ csrf_token }}'
                 }
