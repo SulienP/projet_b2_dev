@@ -21,19 +21,18 @@ def signup(request):
 
     return render(request, 'accounts/signup.html')
 
-
+@api_view(['GET', 'POST'])
 def login_user(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+    if request.method == 'POST':
+        username = request.data.get("username")
+        password = request.data.get("password")
 
-        user = authenticate(request, username=username, password=password)  # Correction de l'appel à authenticate
-        if user:
+        user = authenticate(username=username, password=password)
+        if user is not None:
             login(request, user)
-            request.session['user_id'] = user.id
-        
-        return redirect('index')  
-    return render(request, 'accounts/login.html')
+            return redirect('index')
+    else:
+        return render(request, 'accounts/login.html')
 
 def logout_user(request):
     user_id = request.session.get('user_id')

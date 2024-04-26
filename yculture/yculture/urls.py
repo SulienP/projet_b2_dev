@@ -17,7 +17,7 @@ urlpatterns = [
     path('', index, name="index"),
     path('play/', play, name="play"),
     path('signup/', signup, name="signup"),
-    path('login/', login_user, name="login"),
+    path('login/', views.login_user, name="login"),
     path('logout/' , logout_user, name="logout"),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'), name = 'password_reset'),
 	path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
