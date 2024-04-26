@@ -8,6 +8,7 @@ from play.models import MatchMeking
 
 User = get_user_model()
 
+@api_view(['GET','POST'])
 def signup(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -17,9 +18,10 @@ def signup(request):
                                         email=email,
                                         password=password)
         login(request, user)
+        
         return redirect('index')
-
-    return render(request, 'accounts/signup.html')
+    else:
+        return render(request, 'accounts/signup.html')
 
 @api_view(['GET', 'POST'])
 def login_user(request):
