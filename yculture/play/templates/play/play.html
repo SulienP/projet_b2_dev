@@ -3,26 +3,32 @@
 <title>{% block title %}Play - YCulture{% endblock %}</title>
 
 {% block content %}
-    <div>
-        <div id="timer">Temps restant : <span id="countdown"></span></div>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'play/css/play.css' %}">
+
+    <div class="game">
         <div id="chat">
-            <h2>Chat :</h2>
+            <div class="background"></div>
             <div id="messages">
                 <!-- Les messages du chat seront affichés ici -->
             </div>
-            <input type="text" id="messageInput" placeholder="Tapez votre message ici...">
-            <button onclick="sendMessage()">Envoyer</button>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Envoyer un message">
+                <button onclick="sendMessage()">Envoyer</button>
+            </div>
         </div>
-    </div>
-
-    <div id="questions">
-        <h2>Questions : {{ value }}</h2>
-        <ul>
-            <li>Réponse 1</li>
-            <li>Réponse 2</li>
-            <li>Réponse 3</li>
-            <li>Réponse 4</li>
-        </ul>
+        <div id="questions">
+            <h2>Combien de temps faut-il à la Terre pour effectuer une révolution autour du soleil ?{{ value }}</h2>
+            <div id="timer"><span id="countdown"></span></div>
+            <form action="/submit_answer" method="post" role="form" aria-label="Sélectionner une durée en jours">
+                <ul class="button-list">
+                    <li><button type="submit" name="answer" value="365 jours" role="button" aria-label="365 jours">365 jours</button></li>
+                    <li><button type="submit" name="answer" value="365.25 jours" role="button" aria-label="365.25 jours">365.25 jours</button></li>
+                    <li><button type="submit" name="answer" value="365.5 jours" role="button" aria-label="365.5 jours">365.5 jours</button></li>
+                    <li><button type="submit" name="answer" value="366 jours" role="button" aria-label="366 jours">366 jours</button></li>
+                </ul>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -40,7 +46,7 @@
         // Fonction pour mettre à jour le timer
         function updateTimer() {
             var countdownElement = document.getElementById("countdown");
-            var seconds = 300; // 5 minutes
+            var seconds = 30;
             function countdown() {
                 seconds--;
                 var minutes = Math.floor(seconds / 60);
