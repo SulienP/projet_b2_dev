@@ -1,11 +1,8 @@
 from django.shortcuts import redirect, render
-        
-from play.models import Question, Reponse,MatchMeking
+from play.models import Question, Reponse
 import random
-
 from accounts.models import Player
 from play.add_data import data
-
 
 def play(request):
     current_user = request.user
@@ -14,52 +11,24 @@ def play(request):
         StartGame.game(current_user, selected_answer)
 
     if current_user.isInGame:
-            return redirect('index')
+        return redirect('index')
         
     question, response = gamemanager(request)
     return render(request, 'play/play.html', {'question': question, "response": response})
+
 def gamemanager(request):
     current_user = request.user
-    data()
     if not current_user.isInGame:
         user_id = current_user.id
-        player = Player.objects.get(id=user_id)
+        player, created = Player.objects.get_or_create(id=user_id)
         player.isInGame = True
         player.save()
-
         question, response = StartGame.get_question_and_response() 
         return question, response
-    
-    return None, None
+    else:
+        return None, None
 
-   
-#     current_user = request.user
-#     user_id = request.session.get('user_id')
-#     player = MatchMeking.objects.filter(id_user=user_id).first()
-#     print(player)
-#     # data()
-#     if not player:
-#         new_player = MatchMeking.objects.create(id_user=user_id, userRank=1, isInGame=False)
-#         new_player.save()
-#         StartGame()
-#         new_player.delete()
-#         question, response = StartGame.get_question_and_response()
-#         return question, response
-#     else:    
-#         return "noPlay"
-#  # players = MatchMeking.objects.all()[:2]
-
-#         # if len(players) == 2:
-#         #     GA.StartGame(players)
-#         #     for player in players:
-#         #         player.delete()
-        
-        
-        
-
-
-
-class StartGame():
+class StartGame:
     
     @staticmethod
     def get_question_and_response():
@@ -73,14 +42,15 @@ class StartGame():
             response_choice.append(responses_by_question)
         return random_questions, response_choice
     
+    @staticmethod
     def game(current_player, answer):
-        if answer != None:
+        if answer is not None:
             get_response_information = Reponse.objects.get(id=answer)
             print(get_response_information)
             if get_response_information.isTheResponse:
                 current_player.point += 5
             else:
                 current_player.point -= 5
-            if current_player.point <= 0 :
-                current_player.point =0  
+            if current_player.point < 0:
+                current_player.point = 0  
             current_player.save()
