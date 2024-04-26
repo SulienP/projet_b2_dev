@@ -85,6 +85,6 @@ input::placeholder{
     padding-left: -15px;
 }
 
-*:focus {
+input:focus {
     outline: 2px solid var(--action-color);
 }

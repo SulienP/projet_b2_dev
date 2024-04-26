@@ -3,18 +3,39 @@
 <title>{% block title %}Settings - YCulture{% endblock %}</title>
 
 {% block content %}
-    <h2>Settings</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/settings.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-    {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}" aria-label="Déconnexion" role="link">Déconnexion</a>
-        
-    {% elif request.path == '/' %}
-        <a href="{% url 'login' %}" class="connexion" aria-label="Connexion" role="link">Connexion</a>
-    {% endif %}
+    <div class="center">
+        <div>
+            <h2>Préférences</h2>
+            <ul>
+                <li>
+                    <label for="password">Mot de passe</label>
+                    <a href="{% url 'change_password' %}">Changer le mot de passe</a>
+                </li>
+            </ul>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label for="">Photo de profil</label>
+                    <div class="edit-photo">
+                        {% if user.profil_photo %}
+                            <img src="{{ user.profil_photo.url }}" alt="Photo de profil">
+                        {% else %}
+                            <span class="material-symbols-outlined">image</span>
+                        {% endif %}
+                        {{ form.as_p }}
+                        <button type="submit">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="logout" aria-label="Déconnexion" role="link">Déconnexion</a>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}
