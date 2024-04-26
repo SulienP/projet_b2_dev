@@ -108,6 +108,7 @@ class ApiDetailApiView(APIView):
             {"res": "Object deleted!"},
             status=status.HTTP_200_OK
         )
+
 class UserLoginAPIView(APIView):
     def post(self, request):
         username = request.data.get("username")

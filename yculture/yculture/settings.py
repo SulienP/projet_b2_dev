@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'play',
     'rest_framework',
     'api',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [

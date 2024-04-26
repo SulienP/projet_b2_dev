@@ -35,21 +35,19 @@ def login_user(request):
 
         if response.status_code == 200:  
             user_data = response.json()  
-            user = authenticate(request, username=user_data['username'], password=user_data['password'])
+            user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
                 request.session['user_id'] = user_data['id']  
                 return redirect('index')  
             else:
-                return JsonResponse({'message': 'Invalid credentials'}, status=400)
+                return JsonResponse({'message': 'Authentication successful, but failed to login locally'}, status=400)
         else:
             return JsonResponse({'message': 'Invalid credentials'}, status=400)
     elif request.method == "GET":
-        template = loader.get_template("accounts/login.html")
-        return HttpResponse(template.render(None, request))        
+        return render(request, "accounts/login.html")
     else:
         return JsonResponse({'message': 'Invalid method'}, status=405)
-
 
 def logout_user(request):
     user_id = request.session.get('user_id')
