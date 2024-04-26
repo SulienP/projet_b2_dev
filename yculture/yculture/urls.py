@@ -8,9 +8,12 @@ from django.conf.urls.static import static
 
 
 from yculture import settings
+from accounts import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('getData/', views.getData, name="getData"),
+    path('post/',views.postData,name="post"),
     path('', index, name="index"),
     path('play/', play, name="play"),
     path('signup/', signup, name="signup"),

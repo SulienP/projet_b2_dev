@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'play',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
