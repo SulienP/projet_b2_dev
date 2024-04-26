@@ -3,8 +3,9 @@ from django.shortcuts import redirect, render
 
 def play(request):
     value = gamemanager(request)
-    if (value == "play"):
-        
+    print(len(value))
+    print(value)
+    if (len(value) > 1):
         return render(request, 'play/play.html', {'value': value})
     else:
         return redirect('index')
