@@ -3,7 +3,8 @@ import random
 
 
 class StartGame():
-            
+    
+    @staticmethod
     def get_question_and_response():
         random_questions = []
         response_choice = []

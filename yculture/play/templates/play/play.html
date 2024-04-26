@@ -14,16 +14,20 @@
             <button onclick="sendMessage()">Envoyer</button>
         </div>
     </div>
-
-    <div id="questions">
-        <h2>Questions : {{ value }}</h2>
+<div id="questions">
+    <div class="question">
+        <h2>Question :</h2>
+        <p>{{ question.0 }}</p>
         <ul>
-            <li>Réponse 1</li>
-            <li>Réponse 2</li>
-            <li>Réponse 3</li>
-            <li>Réponse 4</li>
+            <li> {{response.0.0}} </li>
+            <li> {{response.0.1}} </li>
+            <li> {{response.0.2}} </li>
+            <li> {{response.0.3}} </li>
+
         </ul>
     </div>
+</div>
+
 
     <script>
         function sendMessage() {
