@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="{% static 'play/css/play.css' %}">
 
     <div class="game">
-        <div id="chat">
-            <div class="background"></div>
-            <div id="messages">
-                <!-- Les messages du chat seront affichés ici -->
-            </div>
-            <div class="chat-input">
-                <input type="text" id="messageInput" placeholder="Envoyer un message">
-                <button onclick="sendMessage()">Envoyer</button>
-            </div>
-        </div>
         <div id="questions">
             <h2>Combien de temps faut-il à la Terre pour effectuer une révolution autour du soleil ?{{ value }}</h2>
             <div id="timer"><span id="countdown"></span></div>
@@ -31,38 +21,5 @@
         </div>
     </div>
 
-    <script>
-        function sendMessage() {
-            var messageInput = document.getElementById("messageInput");
-            var message = messageInput.value;
-            if (message.trim() !== "") {
-                // Envoyer le message (vous pouvez implémenter cette fonction en utilisant AJAX, WebSockets, etc.)
-                console.log("Message envoyé :", message);
-                // Effacer le champ de saisie après l'envoi
-                messageInput.value = "";
-            }
-        }
-
-        // Fonction pour mettre à jour le timer
-        function updateTimer() {
-            var countdownElement = document.getElementById("countdown");
-            var seconds = 30;
-            function countdown() {
-                seconds--;
-                var minutes = Math.floor(seconds / 60);
-                var remainingSeconds = seconds % 60;
-                countdownElement.textContent = minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
-                if (seconds <= 0) {
-                    clearInterval(timer);
-                    countdownElement.textContent = "Temps écoulé";
-                    // Ajoutez ici une logique pour traiter le temps écoulé
-                }
-            }
-            countdown(); // Appel initial pour éviter un délai d'une seconde
-            var timer = setInterval(countdown, 1000);
-        }
-
-        // Appel de la fonction pour commencer le timer
-        updateTimer();
-    </script>
+    <script src="{% static 'play/js/timer.js' %}"></script>
 {% endblock %}

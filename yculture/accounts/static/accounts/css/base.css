@@ -62,11 +62,11 @@
     font-size: 1.15em;
 }
 
-button:hover {
+.base form button:hover {
     background-color: var(--hover-action-color);
 }
 
-button:active {
+.base form button:active {
     background-color: var(--active-action-color);
 }
 

@@ -1,72 +1,14 @@
 .game {
     display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
+    justify-content: center;
 }
-
-#chat .background {
-    background-color: var(--background-color);
-    height: 86px;
-}
-
-#chat {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 20vw;
-    height: 100vh;
-}
-
-#chat .chat-input {
-    margin: 15px 15px;
-}
-
-#chat .chat-input input {
-    width: 250px;
-    height: 45px;
-    border: 0;
-    border-radius: 5px;
-    padding: 0;
-    background-color: #4c4f56;
-    font-size: 0.9em;
-    padding-left: 15px;
-    color: white;
-}
-
-#chat .chat-input button {
-    width: 75px;
-    padding: 15px 0px;
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 700;
-    margin-left: 5px;
-    background-color: var(--action-color);
-    color: white;
-}
-
-#chat .chat-input button:hover {
-    color: rgb(220, 220, 220);
-    background-color: var(--hover-action-color);
-}
-
-#chat .chat-input button:active {
-    color: rgb(220, 220, 220);
-    background-color: var(--active-action-color);
-}
-
-
-
-
 
 #questions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80vw;
+    max-width: 90vw;
     height: 100vh;
-    background-color: #404248;
 }
 
 #questions ul {
