@@ -7,28 +7,37 @@ from play.add_data import data
 
 def play(request):
     current_user = request.user
-    if request.method == 'POST':
-        selected_answer = request.POST.get('selected_answer')
-        StartGame.game(current_user, selected_answer)
+    if current_user.is_authenticated:
 
-    if current_user.isInGame:
-        return redirect('index')
-        
-    question, response = gamemanager(request)
-    return render(request, 'play/play.html', {'question': question, "response": response})
+        if request.method == 'POST':
+            selected_answer = request.POST.get('selected_answer')
+            StartGame.game(current_user, selected_answer)
+
+        if current_user.isInGame:
+            return redirect('index')
+            
+        question, response = gamemanager(request)
+        return render(request, 'play/play.html', {'question': question, "response": response})
+    else:
+        question, response = gamemanager(request)
+
+        return render(request, 'play/play.html', {'question': question, "response": response})
 
 def gamemanager(request):
     current_user = request.user
-    # data()
-    if not current_user.isInGame:
-        user_id = current_user.id
-        player, created = Player.objects.get_or_create(id=user_id)
-        player.isInGame = True
-        player.save()
+    data()
+    if current_user.is_authenticated:
+
+        if not current_user.isInGame:
+            user_id = current_user.id
+            player, created = Player.objects.get_or_create(id=user_id)
+            player.isInGame = True
+            player.save()
+            question, response = StartGame.get_question_and_response() 
+            return question, response
+    else:
         question, response = StartGame.get_question_and_response() 
         return question, response
-    else:
-        return None, None
 
 class StartGame:
     
