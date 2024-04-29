@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from home.views import index
-from accounts.views import signup, logout_user, login_user, settings_user
+from accounts.views import  get_all_urls, signup, logout_user, login_user, settings_user
 from play.views import play, contribution
 from django.conf.urls.static import static
 from django.contrib.auth.views import PasswordChangeView
@@ -12,6 +12,7 @@ from yculture import settings
 from accounts import views
 
 urlpatterns = [
+    path('all_urls/', get_all_urls, name='all_urls'),
 
     path('admin/', admin.site.urls),
     path('getData/', views.getData, name="getData"),
