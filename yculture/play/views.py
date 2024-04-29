@@ -2,32 +2,53 @@ from django.shortcuts import redirect, render
 from play.models import Question, Reponse
 import random
 from accounts.models import Player
+from .data import data
 
 def play(request):
     current_user = request.user
-    if request.method == 'POST':
-        selected_answer = request.POST.get('selected_answer')
-        StartGame.game(current_user, selected_answer)
+    if current_user.is_authenticated:
 
-    if current_user.isInGame:
-        return redirect('index')
-        
-    question, response = gamemanager(request)
-    return render(request, 'play/play.html', {'question': question, "response": response})
+        if request.method == 'POST':
+            selected_answer = request.POST.get('selected_answer')
+            StartGame.game(current_user, selected_answer)
+        if current_user.isInGame:
+            return redirect('index')
+        if current_user.numberGamePlay != 4 :
+            question, response = gamemanager(request)
+            return render(request, 'play/play.html', {'question': question, "response": response})
+        else :
+            current_user.numberGamePlay = 0
+            current_user.isInGame = False
+            current_user.save()
+            return redirect('index')
+    else:
+        question, response = gamemanager(request)
+        return render(request, 'play/play.html', {'question': question, "response": response})
 
 
 def gamemanager(request):
     current_user = request.user
-
-    if not current_user.isInGame:
-        user_id = current_user.id
-        player, created = Player.objects.get_or_create(id=user_id)
-        player.isInGame = True
-        player.save()
+    data()
+    if current_user.is_authenticated:
+        current_user.numberGamePlay += 1
+        current_user.save()
+        if current_user.numberGamePlay == 5:
+            current_user.numberGamePlay = 0
+            current_user.isInGame = False
+            current_user.save()
+            print("jepasseicic")
+            return redirect('index')
+        if not current_user.isInGame:
+            user_id = current_user.id
+            player, created = Player.objects.get_or_create(id=user_id)
+            player.isInGame = True
+            player.save()
+            question, response = StartGame.get_question_and_response() 
+            return question, response
+    else:
         question, response = StartGame.get_question_and_response() 
         return question, response
-    else:
-        return None, None
+
 
 
 class StartGame:

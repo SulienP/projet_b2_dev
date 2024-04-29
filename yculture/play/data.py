@@ -1,7 +1,7 @@
 from play.models import Question
 from play.models import Reponse
 
-def fill_db():
+def data():
     questions = [
         "Quelle est la capitale de la France ?",
         "Qui a peint 'La Nuit étoilée' ?",

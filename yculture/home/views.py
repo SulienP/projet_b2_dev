@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-from home.fill_db import fill_db
 
 from accounts.models import Player
 
 def index(request):
-    #fill_db()
     if request.user.is_authenticated:
         User = get_user_model()
         current_user = User.objects.get(pk=request.user.pk)
