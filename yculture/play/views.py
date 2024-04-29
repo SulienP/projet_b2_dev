@@ -15,9 +15,14 @@ def play(request):
 
         if current_user.isInGame:
             return redirect('index')
-            
-        question, response = gamemanager(request)
-        return render(request, 'play/play.html', {'question': question, "response": response})
+        if current_user.numberGamePlay != 4 :
+            question, response = gamemanager(request)
+            return render(request, 'play/play.html', {'question': question, "response": response})
+        else :
+            current_user.numberGamePlay = 0
+            current_user.isInGame = False
+            current_user.save()
+            return redirect('index')
     else:
         question, response = gamemanager(request)
 
@@ -27,7 +32,14 @@ def gamemanager(request):
     current_user = request.user
     data()
     if current_user.is_authenticated:
-
+        current_user.numberGamePlay += 1
+        current_user.save()
+        if current_user.numberGamePlay == 5:
+            current_user.numberGamePlay = 0
+            current_user.isInGame = False
+            current_user.save()
+            print("jepasseicic")
+            return redirect('index')
         if not current_user.isInGame:
             user_id = current_user.id
             player, created = Player.objects.get_or_create(id=user_id)
