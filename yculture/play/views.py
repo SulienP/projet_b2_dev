@@ -1,9 +1,7 @@
 from django.shortcuts import redirect, render
-from.add_data import data
 from play.models import Question, Reponse
 import random
 from accounts.models import Player
-from play.add_data import data
 
 def play(request):
     current_user = request.user
@@ -17,9 +15,10 @@ def play(request):
     question, response = gamemanager(request)
     return render(request, 'play/play.html', {'question': question, "response": response})
 
+
 def gamemanager(request):
     current_user = request.user
-    # data()
+
     if not current_user.isInGame:
         user_id = current_user.id
         player, created = Player.objects.get_or_create(id=user_id)
@@ -30,8 +29,8 @@ def gamemanager(request):
     else:
         return None, None
 
+
 class StartGame:
-    
     @staticmethod
     def get_question_and_response():
         random_questions = []
@@ -59,35 +58,6 @@ class StartGame:
 
         return redirect('index')
 
-'''
-def contribution(request):
-    if request.method == "POST":
-        new_question = Question(question=request.POST.get("question"))
-        new_question.save()
-        
-        last_question_id = Question.objects.latest('id').id
-
-        new_answer = Reponse(id_question=last_question_id, response=request.POST.get("answer"), isTheResponse=True)
-        new_answer.save()
-
-        return render(request, 'play/contribution.html')
-    else:
-        return render(request, 'play/contribution.html', {'error_message': "La question ne peut pas être vide"})
-
-    if request.method == "POST":
-        question = request.POST.get("question")
-        user = User.objects.create_user(username=username,
-                                        email=email,
-                                        password=password)
-        login(request, user)
-        return redirect('index')
-
-    return render(request, 'play/contribution.html')
-'''
-
-
-
-
 
 def contribution(request):
     if request.method == "POST":
@@ -107,6 +77,7 @@ def contribution(request):
             Reponse.objects.create(id_question=new_question, response=answer_text, isTheResponse=is_correct)
 
         return render(request, 'play/contribution.html')
+    
     else:
         return render(request, 'play/contribution.html')
     

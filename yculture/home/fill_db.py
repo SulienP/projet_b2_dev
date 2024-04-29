@@ -1,9 +1,8 @@
 from play.models import Question
 from play.models import Reponse
 
-def data():
-    #Questions
-    nouvelles_questions = [
+def fill_db():
+    questions = [
         "Quelle est la capitale de la France ?",
         "Qui a peint 'La Nuit étoilée' ?",
         "Combien de planètes composent notre système solaire ?",
@@ -25,15 +24,12 @@ def data():
         "Qui a écrit 'Les Misérables' ?",
         "Combien de côtés a un pentagone ?",
     ]
-    # Ajoutez chaque question à la base de données
-    for question_text in nouvelles_questions:
-        nouvelle_question = Question(question=question_text)
-        nouvelle_question.save()
 
-    print("Les questions ont été ajoutées avec succès.")
+    for question in questions:
+        new_question = Question(question=question)
+        new_question.save()
 
-# Liste des réponses à ajouter pour toutes les questions
-    toutes_les_reponses = [
+    reponses = [
         # Réponses pour la question 1
         (1, "Paris", True),
         (1, "Londres", False),
@@ -136,8 +132,7 @@ def data():
         (20, "7", False),
     ]
 
-    # Ajoutez chaque réponse à la base de données
-    for id_question, reponse_text, is_true in toutes_les_reponses:
+    for id_question, reponse_text, is_true in reponses:
         question = Question.objects.get(pk=id_question)
         nouvelle_reponse = Reponse(id_question=question, response=reponse_text, isTheResponse=is_true)
         nouvelle_reponse.save()

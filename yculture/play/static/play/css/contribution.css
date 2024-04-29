@@ -1,11 +1,18 @@
-
-
-form {
+.base {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+h2 {
+    font-family: 'Heavitas', sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
@@ -17,6 +24,10 @@ ul {
 
 li {
     display: flex;
-    flex-direction: column;
     margin-bottom: 15px;
+}
+
+li:first-child {
+    display: flex;
+    flex-direction: column;
 }
