@@ -5,15 +5,18 @@
 {% block content %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'play/css/play.css' %}">
-
-
+    <script src="{% static 'play/js/script.js' %}"></script>
+   
 
 
 
     <div id="questions">
         <div class="question">
             <h2>Question :</h2>
+            <div id="timer"><span id="countdown"></span></div>
+
             <p>{{ question.0 }}</p>
+
             <form id="response-form" method="post" action="{% url 'play' %}">
                 {% csrf_token %}
                 <div id="response">
@@ -58,6 +61,26 @@
 
 
     <script>
+        function updateTimer(){
+    let countdownElement = document.getElementById("countdown")
+    let seconds = 30
+    function countdown(){
+        seconds--
+        let minutes = Math.floor(seconds / 60)
+        let remainingSeconds = seconds % 60
+        countdownElement.textContent = minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds
+        if(seconds <= 0){
+            console.log("la")
+            clearInterval(timer)
+            countdownElement.textContent = "0:00"
+            window.location.reload();
+
+        }
+    }
+    countdown()
+    let timer = setInterval(countdown, 1000)
+}
+
         function handleResponseButtonClick() {
         var buttons = document.querySelectorAll('.response-button');
         buttons.forEach(function(button) {
@@ -91,7 +114,7 @@
             });
         });
     }
-
+    updateTimer()
     handleResponseButtonClick();
     </script>
 {% endblock %}
