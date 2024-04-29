@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import get_resolver
+
+from accounts.serializer import PlayerSerializer
 from .edit_accounts import EditProfilPhoto
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -41,7 +44,6 @@ def login_user(request):
             return render(request, 'accounts/login.html')
             
         
-        return redirect('index')  
     return render(request, 'accounts/login.html')
 def logout_user(request):
     user_id = request.session.get('user_id')
@@ -79,3 +81,21 @@ def postData(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
+from rest_framework.response import Response
+from .models import Player
+
+def get_all_urls(request):
+    def extract_urls(url_patterns):
+        urls = []
+        for url_pattern in url_patterns:
+            if hasattr(url_pattern, 'url_patterns'):
+                urls.extend(extract_urls(url_pattern.url_patterns))
+            else:
+                urls.append(str(url_pattern.pattern))
+        return urls
+
+    resolver = get_resolver()
+    all_urls = extract_urls(resolver.url_patterns)
+
+    return JsonResponse({'urls': all_urls})
