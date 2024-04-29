@@ -1,9 +1,12 @@
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
+from .edit_accounts import EditProfilPhoto
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Player
+from django import template
+
 from play.models import MatchMeking
 
 User = get_user_model()
@@ -32,10 +35,14 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+            request.session['user_id'] = user.id
             return redirect('index')
-    else:
-        return render(request, 'accounts/login.html')
-
+        else:
+            return render(request, 'accounts/login.html')
+            
+        
+        return redirect('index')  
+    return render(request, 'accounts/login.html')
 def logout_user(request):
     user_id = request.session.get('user_id')
     
@@ -45,6 +52,20 @@ def logout_user(request):
     logout(request)
 
     return redirect('index')
+
+
+def settings_user(request):
+    if request.method == 'POST':
+        form = EditProfilPhoto(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('settings')
+    else:
+        form = EditProfilPhoto(instance=request.user)
+
+    context = { 'form': form }
+
+    return render(request, 'accounts/settings.html', context)
 
 @api_view(['GET'])
 def getData(request):

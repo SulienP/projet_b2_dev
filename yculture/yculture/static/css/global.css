@@ -56,8 +56,11 @@ p {
     align-items: center;
     margin: 25px 0px 0px 25px;
     border-bottom: 2px solid var(--action-color);
+    background-color: var(--background-color);
     padding-bottom: 10px;
     width: 105px;
+    position: absolute;
+    z-index: 999;
 }
 
 .retour span {
@@ -73,10 +76,12 @@ p {
 }
 
 button:hover {
+    color: rgb(220, 220, 220);
     background-color: var(--hover-action-color);
 }
 
 button:active {
+    color: rgb(220, 220, 220);
     background-color: var(--active-action-color);
 }
 
@@ -85,6 +90,6 @@ input::placeholder{
     padding-left: -15px;
 }
 
-*:focus {
+input:focus {
     outline: 2px solid var(--action-color);
 }

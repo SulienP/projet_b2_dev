@@ -3,78 +3,62 @@
 {% block title %}Play - YCulture{% endblock %}
 
 {% block content %}
-<div>
-    <div id="timer">Temps restant : <span id="countdown"></span></div>
-    <div id="chat">
-        <h2>Chat :</h2>
-        <div id="messages">
-            <!-- Les messages du chat seront affichés ici -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'play/css/play.css' %}">
+
+
+
+
+
+    <div id="questions">
+        <div class="question">
+            <h2>Question :</h2>
+            <p>{{ question.0 }}</p>
+            <form id="response-form" method="post" action="{% url 'play' %}">
+                {% csrf_token %}
+                <div id="response">
+                    <ul>
+                        <li>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.0.id }}">{{ response.0.0 }}</button>
+                        </li>
+                        <li>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.1.id }}">{{ response.0.1 }}</button>
+                        </li>
+                        <li>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.2.id }}">{{ response.0.2 }}</button>
+                        </li>
+                        <li>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.3.id }}">{{ response.0.3 }}</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
         </div>
-        <input type="text" id="messageInput" placeholder="Tapez votre message ici...">
-        <button onclick="sendMessage()">Envoyer</button>
     </div>
-</div>
 
-<div id="questions">
-    <div class="question">
-        <h2>Question :</h2>
-        <p>{{ question.0 }}</p>
-        <form id="response-form" method="post" action="{% url 'play' %}">
-            {% csrf_token %}
-            <div id="response">
-                <ul>
-                    <li>
-                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.0.id }}">{{ response.0.0 }}</button>
-                    </li>
-                    <li>
-                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.1.id }}">{{ response.0.1 }}</button>
-                    </li>
-                    <li>
-                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.2.id }}">{{ response.0.2 }}</button>
-                    </li>
-                    <li>
-                        <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.3.id }}">{{ response.0.3 }}</button>
-                    </li>
+
+
+
+
+
+    <div class="game">
+        <div id="questions">
+            <h2>Combien de temps faut-il à la Terre pour effectuer une révolution autour du soleil ?{{ value }}</h2>
+            <div id="timer"><span id="countdown"></span></div>
+            <form action="/submit_answer" method="post" role="form" aria-label="Sélectionner une durée en jours">
+                <ul class="button-list">
+                    <li><button type="submit" name="answer" value="365 jours" role="button" aria-label="365 jours">365 jours</button></li>
+                    <li><button type="submit" name="answer" value="365.25 jours" role="button" aria-label="365.25 jours">365.25 jours</button></li>
+                    <li><button type="submit" name="answer" value="365.5 jours" role="button" aria-label="365.5 jours">365.5 jours</button></li>
+                    <li><button type="submit" name="answer" value="366 jours" role="button" aria-label="366 jours">366 jours</button></li>
                 </ul>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<script>
-    function sendMessage() {
-        var messageInput = document.getElementById("messageInput");
-        var message = messageInput.value;
-        if (message.trim() !== "") {
-            // Envoyer le message (vous pouvez implémenter cette fonction en utilisant AJAX, WebSockets, etc.)
-            console.log("Message envoyé :", message);
-            // Effacer le champ de saisie après l'envoi
-            messageInput.value = "";
-        }
-    }
 
-    // Fonction pour mettre à jour le timer
-    function updateTimer() {
-        var countdownElement = document.getElementById("countdown");
-        var seconds = 300; // 5 minutes
-        function countdown() {
-            seconds--;
-            var minutes = Math.floor(seconds / 60);
-            var remainingSeconds = seconds % 60;
-            countdownElement.textContent = minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
-            if (seconds <= 0) {
-                clearInterval(timer);
-                countdownElement.textContent = "Temps écoulé";
-                // Ajoutez ici une logique pour traiter le temps écoulé
-            }
-        }
-        countdown(); // Appel initial pour éviter un délai d'une seconde
-        var timer = setInterval(countdown, 1000);
-    }
-
-    updateTimer();
-
-    function handleResponseButtonClick() {
+    <script>
+        function handleResponseButtonClick() {
         var buttons = document.querySelectorAll('.response-button');
         buttons.forEach(function(button) {
             button.addEventListener('click', function(event) {
@@ -109,5 +93,5 @@
     }
 
     handleResponseButtonClick();
-</script>
+    </script>
 {% endblock %}

@@ -12,7 +12,8 @@
     <body>
         {% if request.path != '/' and request.path != 'play' %}
             <a href="{% url 'index' %}" class="retour" aria-label="Retour" role="link">
-                <span class="material-symbols-outlined">arrow_back</span>Retour
+                <span class="material-symbols-outlined">arrow_back</span>
+                Retour
             </a>
         {% endif %}
         {% block content %}

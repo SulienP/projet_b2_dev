@@ -1,33 +1,30 @@
 from play.models import Question
 from play.models import Reponse
 
-
-
 def data():
-#Questions
+    #Questions
     nouvelles_questions = [
-    "Quelle est la capitale de la France ?",
-    "Qui a peint 'La Nuit étoilée' ?",
-    "Combien de planètes composent notre système solaire ?",
-    "Quel est l'organe principal du système respiratoire humain ?",
-    "Qui a écrit 'Le Petit Prince' ?",
-    "Combien de côtés a un hexagone ?",
-    "Quel est le symbole chimique de l'oxygène ?",
-    "Quel est l'océan le plus grand du monde ?",
-    "Quel est l'organe principal du système digestif humain ?",
-    "Quelle est la capitale du Japon ?",
-    "Combien de lettres compte le mot 'encyclopédie' ?",
-    "Qui a découvert la théorie de la relativité restreinte ?",
-    "Quel est le plus grand désert chaud du monde ?",
-    "Quelle est la planète la plus proche du soleil ?",
-    "Qui a peint 'Les Tournesols' ?",
-    "Combien de temps faut-il à la Terre pour effectuer une révolution autour du soleil ?",
-    "Quelle est la plus grande île du monde ?",
-    "Quel est l'organe principal du système circulatoire humain ?",
-    "Qui a écrit 'Les Misérables' ?",
-    "Combien de côtés a un pentagone ?",
-]
-
+        "Quelle est la capitale de la France ?",
+        "Qui a peint 'La Nuit étoilée' ?",
+        "Combien de planètes composent notre système solaire ?",
+        "Quel est l'organe principal du système respiratoire humain ?",
+        "Qui a écrit 'Le Petit Prince' ?",
+        "Combien de côtés a un hexagone ?",
+        "Quel est le symbole chimique de l'oxygène ?",
+        "Quel est l'océan le plus grand du monde ?",
+        "Quel est l'organe principal du système digestif humain ?",
+        "Quelle est la capitale du Japon ?",
+        "Combien de lettres compte le mot 'encyclopédie' ?",
+        "Qui a découvert la théorie de la relativité restreinte ?",
+        "Quel est le plus grand désert chaud du monde ?",
+        "Quelle est la planète la plus proche du soleil ?",
+        "Qui a peint 'Les Tournesols' ?",
+        "Combien de temps faut-il à la Terre pour effectuer une révolution autour du soleil ?",
+        "Quelle est la plus grande île du monde ?",
+        "Quel est l'organe principal du système circulatoire humain ?",
+        "Qui a écrit 'Les Misérables' ?",
+        "Combien de côtés a un pentagone ?",
+    ]
     # Ajoutez chaque question à la base de données
     for question_text in nouvelles_questions:
         nouvelle_question = Question(question=question_text)
@@ -144,4 +141,3 @@ def data():
         question = Question.objects.get(pk=id_question)
         nouvelle_reponse = Reponse(id_question=question, response=reponse_text, isTheResponse=is_true)
         nouvelle_reponse.save()
-
