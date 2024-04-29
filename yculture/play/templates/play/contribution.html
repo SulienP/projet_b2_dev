@@ -6,6 +6,44 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'play/css/contribution.css' %}">
 
+
+
+    
+    <form method="POST" role="form">
+        {% csrf_token %}
+        <ul>
+            <li>
+                <label for="question">Votre question</label>
+                <input type="text" id="question" name="question" placeholder="Votre question" aria-label="Votre question" role="textbox">
+            </li>
+            <li>
+                <label for="answer1">Réponse 1</label>
+                <input type="text" id="answer1" name="answer1" placeholder="Réponse 1" aria-label="Réponse 1" role="textbox">
+                <input type="checkbox" id="correct1" name="correct" value="1">
+            </li>
+            <li>
+                <label for="answer2">Réponse 2</label>
+                <input type="text" id="answer2" name="answer2" placeholder="Réponse 2" aria-label="Réponse 2" role="textbox">
+                <input type="checkbox" id="correct2" name="correct" value="2">
+            </li>
+            <li>
+                <label for="answer3">Réponse 3</label>
+                <input type="text" id="answer3" name="answer3" placeholder="Réponse 3" aria-label="Réponse 3" role="textbox">
+                <input type="checkbox" id="correct3" name="correct" value="3">
+            </li>
+            <li>
+                <label for="answer4">Réponse 4</label>
+                <input type="text" id="answer4" name="answer4" placeholder="Réponse 4" aria-label="Réponse 4" role="textbox">
+                <input type="checkbox" id="correct4" name="correct" value="4">
+            </li>
+        </ul>
+        <button type="submit" role="button">Soumettre</button>
+    </form>
+
+
+
+
+    <!--
     <form method="POST" role="form">
         {% csrf_token %}
         <ul>
@@ -32,4 +70,5 @@
         </ul>
         <button type="submit" role="button">Soumettre</button>
     </form>
+    -->
 {% endblock %}

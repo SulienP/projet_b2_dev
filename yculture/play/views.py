@@ -58,11 +58,8 @@ class StartGame:
             current_player.save()
 
         return redirect('index')
-    
 
-from play.models import Question
-from play.models import Reponse
-
+'''
 def contribution(request):
     if request.method == "POST":
         new_question = Question(question=request.POST.get("question"))
@@ -77,7 +74,6 @@ def contribution(request):
     else:
         return render(request, 'play/contribution.html', {'error_message': "La question ne peut pas être vide"})
 
-    '''
     if request.method == "POST":
         question = request.POST.get("question")
         user = User.objects.create_user(username=username,
@@ -85,6 +81,32 @@ def contribution(request):
                                         password=password)
         login(request, user)
         return redirect('index')
-    '''
 
     return render(request, 'play/contribution.html')
+'''
+
+
+
+
+
+def contribution(request):
+    if request.method == "POST":
+        question_text = request.POST.get("question")
+        if not question_text:
+            return render(request, 'play/contribution.html', {'error_message': "La question ne peut pas être vide"})
+
+        new_question = Question.objects.create(question=question_text)
+        
+        correct_answer_index = int(request.POST.get("correct"))
+
+        for i in range(1, 5):
+            answer_text = request.POST.get(f"answer{i}")
+            if not answer_text:
+                return render(request, 'play/contribution.html', {'error_message': f"La réponse {i} ne peut pas être vide"})
+            is_correct = i == correct_answer_index
+            Reponse.objects.create(id_question=new_question, response=answer_text, isTheResponse=is_correct)
+
+        return render(request, 'play/contribution.html')
+    else:
+        return render(request, 'play/contribution.html')
+    

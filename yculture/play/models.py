@@ -8,7 +8,6 @@ class Question(models.Model):
         return self.question
 
 
-
 class Reponse(models.Model):
     id_question = models.ForeignKey(Question, on_delete=models.CASCADE)
     response = models.CharField(max_length=255)
@@ -17,7 +16,6 @@ class Reponse(models.Model):
     def __str__(self):
         return self.response
 
-# ! décommenter et ajouter taff evan
 
 class MatchMeking(models.Model):
     id_user = models.IntegerField(null=True)
