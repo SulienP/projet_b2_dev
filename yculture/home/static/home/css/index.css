@@ -3,7 +3,7 @@ body {
     overflow-x: hidden;
 }
 
-h1 {
+h1, h2 {
     font-family: 'Heavitas', sans-serif;
     margin-top: 10vh;
     padding: 0;
@@ -122,6 +122,35 @@ h1 {
     background-color: var(--active-action-color);
     color: white;
 }
+
+
+
+
+
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0px;
+}
+
+.leaderboard h2 {
+    font-family: 'Heavitas', sans-serif;
+}
+
+.leaderboard ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+
+
+
 
 .add-questions {
     display: flex;

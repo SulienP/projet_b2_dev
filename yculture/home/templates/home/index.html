@@ -36,15 +36,15 @@
         </form>
     </div>
     <div class="leaderboard">
-        <h2>leaderboard</h2>
+        <h2>Leaderboard</h2>
         <ul>
             {% for player in players %}
-                <li>{{ player.username }} - Points : {{ player.point }}        ,</li>
+                <li>{{ player.username }} - Points : {{ player.point }}</li>
             {% endfor %}
         </ul>
     </div>
     <div class="add-questions">
-        <h1>SUGGÉREZ . . .</h1>
+        <h2>SUGGÉREZ . . .</h2>
         <p>...des questions qui pourront se retrouver dans le jeu et profiter tout le monde.</p>
         <a href="{% url 'contribution' %}" aria-label="Contribuer" role="link">Contribuer</a>
     </div>
