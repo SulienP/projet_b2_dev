@@ -28,7 +28,7 @@ def play(request):
 
 def gamemanager(request):
     current_user = request.user
-    data()
+    #data()
     if current_user.is_authenticated:
         current_user.numberGamePlay += 1
         current_user.save()
