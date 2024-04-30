@@ -1,0 +1,92 @@
+.base {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: 'Heavitas', sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+li:not(:first-child) {
+    display: flex;
+    align-items: center;
+    
+}
+
+li:first-child {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+li:first-child label {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+:first-child input[type="text"] {
+    width: 400px;
+    height: 50px;
+    padding: 0;
+    padding-left: 15px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #4c4f56;
+    font-size: 0.9em;
+    color: white;
+}
+
+li:not(:first-child) input[type="text"] {
+    margin: 0px 15px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+input::placeholder{
+    color: #a5acbb;
+    padding-left: -15px;
+}
+
+input:focus {
+    outline: 2px solid var(--action-color);
+}
+
+button {
+    width: 415px;
+    height: 50px;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 50px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.15em;
+    background-color: var(--action-color);
+    color: white;
+}

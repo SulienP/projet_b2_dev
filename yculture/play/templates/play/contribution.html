@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Contribution - YCulture{% endblock %}</title>
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'play/css/contribution.css' %}">
+
+    <div class="base">
+        {% if user.is_authenticated %}
+            <form method="POST" role="form">
+                {% csrf_token %}
+                <ul>
+                    <li>
+                        <label for="question">Votre question</label>
+                        <input type="text" id="question" name="question" placeholder="Votre question" aria-label="Votre question" role="textbox">
+                    </li>
+                    <li>
+                        <label for="answer1">A</label>
+                        <input type="text" id="answer1" name="answer1" placeholder="Réponse A" aria-label="Réponse A" role="textbox">
+                        <input type="checkbox" id="correct1" name="correct" value="1">
+                    </li>
+                    <li>
+                        <label for="answer2">B</label>
+                        <input type="text" id="answer2" name="answer2" placeholder="Réponse B" aria-label="Réponse B" role="textbox">
+                        <input type="checkbox" id="correct2" name="correct" value="2">
+                    </li>
+                    <li>
+                        <label for="answer3">C</label>
+                        <input type="text" id="answer3" name="answer3" placeholder="Réponse C" aria-label="Réponse C" role="textbox">
+                        <input type="checkbox" id="correct3" name="correct" value="3">
+                    </li>
+                    <li>
+                        <label for="answer4">D</label>
+                        <input type="text" id="answer4" name="answer4" placeholder="Réponse D" aria-label="Réponse D" role="textbox">
+                        <input type="checkbox" id="correct4" name="correct" value="4">
+                    </li>
+                </ul>
+                <button type="submit" role="button">Ajouter</button>
+            </form>
+        {% else %}
+            <h2>Vous devez être connecté pour ajouter des questions</h2>
+        {% endif %}
+    </div>
+{% endblock %}

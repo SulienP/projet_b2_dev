@@ -1,0 +1,57 @@
+.game {
+    display: flex;
+    justify-content: center;
+}
+
+#questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+    height: 100vh;
+}
+
+#questions ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#questions h2 {
+    font-family: 'Heavitas', sans-serif;
+    margin: 35px 50px;
+    text-align: center;
+}
+
+#questions ul {
+    width: 35vw;
+}
+
+#questions button {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 15px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 700;
+    background-color: #60646d;
+    color: white;
+}
+
+#questions button:hover {
+    background-color: var(--hover-action-color);
+    color: rgb(237, 237, 237);
+}
+
+#questions button:active {
+    background-color: var(--active-action-color);
+    color: rgb(214, 214, 214);
+}
+
+#questions #timer {
+
+    font-family: 'Heavitas', sans-serif;
+    font-size: 3em;
+    margin-bottom: 35px;
+}

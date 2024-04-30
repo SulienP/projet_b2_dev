@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+<title>{% block title %}Connexion - YCulture{% endblock %}</title>
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/css/base.css' %}">
+
+    <div class="base">
+        <h1>Connexion</h1>
+       <form method="POST" role="form">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" aria-label="Nom d'utilisateur" role="textbox">
+        </li>
+        <li>
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="password" placeholder="Mot de passe" aria-label="Mot de passe" role="textbox">
+            <a href="{% url 'password_reset' %}">Réinitialiser mon mot de passe</a>
+        </li>
+    </ul>
+    <button type="submit" role="button">Connexion</button>
+    <small>
+        Pas encore inscrit ?
+        <a href="{% url 'signup' %}">S'inscrire</a>                
+    </small>
+</form>
+
+    </div>
+{% endblock %}
