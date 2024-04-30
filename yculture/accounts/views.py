@@ -45,6 +45,9 @@ def login_user(request):
             
         
     return render(request, 'accounts/login.html')
+
+
+
 def logout_user(request):
     user_id = request.session.get('user_id')
     
