@@ -36,7 +36,6 @@ def gamemanager(request):
             current_user.numberGamePlay = 0
             current_user.isInGame = False
             current_user.save()
-            print("jepasseicic")
             return redirect('index')
         if not current_user.isInGame:
             user_id = current_user.id
