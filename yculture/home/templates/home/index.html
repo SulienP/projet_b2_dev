@@ -32,7 +32,7 @@
         <p>...où cinq participants, lors de 4 manches successives, doivent répondre à des questions de culture générale dans diverses catégories. Le concurrent le moins performant est éliminé à la fin de chaque manche et le gagnant est le candidat remportant la dernière manche.</p>
         <form action="{% url 'play' %}" method="post">
             {% csrf_token %}
-            <button type="submit">JOUER</button>
+            <button type="submit" aria-label="Jouer" role="button">JOUER</button>
         </form>
     </div>
     <div class="leaderboard">

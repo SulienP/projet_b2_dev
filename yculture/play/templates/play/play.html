@@ -9,22 +9,22 @@
     <div class="game">
         <div id="questions">
             <h2>{{ question.0 }}</h2>
-            <div id="timer"><span id="countdown"></span></div>
+            <div id="timer" aria-live="assertive" role="timer"><span id="countdown"></span></div>
             <form id="response-form" method="post" action="{% url 'play' %}">
                 {% csrf_token %}
                 <div id="response">
                     <ul>
                         <li>
-                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.0.id }}">{{ response.0.0 }}</button>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.0.id }}" aria-label="{{ response.0.0 }}" role="button">{{ response.0.0 }}</button>
                         </li>
                         <li>
-                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.1.id }}">{{ response.0.1 }}</button>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.1.id }}" aria-label="{{ response.0.1 }}" role="button">{{ response.0.1 }}</button>
                         </li>
                         <li>
-                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.2.id }}">{{ response.0.2 }}</button>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.2.id }}" aria-label="{{ response.0.2 }}" role="button">{{ response.0.2 }}</button>
                         </li>
                         <li>
-                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.3.id }}">{{ response.0.3 }}</button>
+                            <button type="submit" class="response-button" name="selected_answer_id" value="{{ response.0.3.id }}" aria-label="{{ response.0.3 }}" role="button">{{ response.0.3 }}</button>
                         </li>
                     </ul>
                 </div>
